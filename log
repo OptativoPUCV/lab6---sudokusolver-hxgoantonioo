@@ -169,3 +169,9 @@ sudoku.c:66:54: error: ‘k’ undeclared (first use in this function)
 sudoku.c:66:54: note: each undeclared identifier is reported only once for each function it appears in
 Compilation failed
 0ff5680
+Thu 16 May 2024 04:00:16 PM UTC: 
+ sudoku.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+ tests:  2|4
+total_score: 15/70
+1949f86
