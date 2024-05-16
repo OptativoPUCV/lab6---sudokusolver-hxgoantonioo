@@ -59,10 +59,16 @@ List* get_adj_nodes(Node* n){
              {
                 if(n->sudo[i][j] == 0)
                 {
-                   Node* adj = copy(n);
-                   adj->sudo[i][j] = num;
-                   num++;
-                   pushBack(list, adj);
+                   while(num <= 9)
+                      {
+                         Node* aux = copy(n);
+                         aux->sudo[i][j] = num;
+                         if(is_valid(aux))
+                            {
+                               pushBack(list, aux);
+                            }
+                         num++;
+                      }
                 }
              }
        }
