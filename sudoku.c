@@ -44,51 +44,44 @@ void print_node(Node* n){
 }
 
 int is_valid(Node* n){
-    int i, j, k, l;
-    int row_check[10] = {0};
-    int col_check[10] = {0};
-    int submatrix_check[10] = {0};
+   int fila[9] = {0,0,0,0,0,0,0,0,0};
+   int columna[9] = {0,0,0,0,0,0,0,0,0};
+   int submatriz[3][3] = {0};
 
-    // Check for repeating numbers in rows and columns
-    for(i = 0; i < 9; i++){
-        for(j = 0; j < 9; j++){
-            // Check rows
-            if(row_check[n->sudo[i][j]] == 1){
-                return 0;
-            } else {
-                row_check[n->sudo[i][j]] = 1;
+   for (int i = 0; i < 9; i++)
+      {
+         for (int j = 0; j < 9; j++)
+            {
+               if(n->sudo[i][j] != 0)
+               {
+                  for (int k = 0; k < 9; k++)
+                     {
+                        if (n->sudo[i][j] == n->sudo[i][k])
+                        {
+                           return 0;
+                        }
+                     }
+                  for (int j = 0; k < 9; k++)
+                     {
+                        if (n->sudo[i][j] == n->sudo[k][j])
+                        {
+                           return 0;
+                        }
+                     }
+                  for (int i = 0; i < 3; i++)
+                     {
+                        for (int j = 0; j < 3; j++)
+                           {
+                              if (n->sudo[i][j] == n->sudo[i][k])
+                              {
+                                 return 0;
+                              }
+                           }
+                     }
+               }
             }
-
-            // Check columns
-            if(col_check[n->sudo[j][i]] == 1){
-                return 0;
-            } else {
-                col_check[n->sudo[j][i]] = 1;
-            }
-        }
-        memset(row_check, 0, sizeof(row_check)); // Reset row check array
-        memset(col_check, 0, sizeof(col_check)); // Reset column check array
-    }
-
-    // Check for repeating numbers in submatrices
-    for(k = 0; k < 9; k++){
-        int start_row = 3 * (k / 3);
-        int start_col = 3 * (k % 3);
-
-        for(l = 0; l < 9; l++){
-            int row = start_row + (l / 3);
-            int col = start_col + (l % 3);
-
-            if(submatrix_check[n->sudo[row][col]] == 1){
-                return 0;
-            } else {
-                submatrix_check[n->sudo[row][col]] = 1;
-            }
-        }
-        memset(submatrix_check, 0, sizeof(submatrix_check)); // Reset submatrix check array
-    }
-
-    return 1;
+      }
+   return 1;
 }
 
 

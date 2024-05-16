@@ -126,3 +126,24 @@ Thu 16 May 2024 03:48:21 PM UTC:
  tests:  2|4
 total_score: 15/70
 80a250c
+Thu 16 May 2024 03:58:13 PM UTC: 
+ sudoku.c | 61 +++++++++++++++++++++++++++----------------------------------
+ 1 file changed, 27 insertions(+), 34 deletions(-)
+In file included from test.c:5:
+sudoku.c: In function ‘is_valid’:
+sudoku.c:64:35: error: ‘k’ undeclared (first use in this function)
+   64 |                   for (int j = 0; k < 9; k++)
+      |                                   ^
+sudoku.c:64:35: note: each undeclared identifier is reported only once for each function it appears in
+sudoku.c:49:8: error: unused variable ‘submatriz’ [-Werror=unused-variable]
+   49 |    int submatriz[3][3] = {0};
+      |        ^~~~~~~~~
+sudoku.c:48:8: error: unused variable ‘columna’ [-Werror=unused-variable]
+   48 |    int columna[9] = {0,0,0,0,0,0,0,0,0};
+      |        ^~~~~~~
+sudoku.c:47:8: error: unused variable ‘fila’ [-Werror=unused-variable]
+   47 |    int fila[9] = {0,0,0,0,0,0,0,0,0};
+      |        ^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+098a928
