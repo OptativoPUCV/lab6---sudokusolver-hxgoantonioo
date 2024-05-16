@@ -45,7 +45,7 @@ void print_node(Node* n){
 
 int is_valid(Node* n)
 {
-   int i, j, k;
+   int i, j;
    int row[9][10] = {0};
    int column[9][10] = {0};
    int submatrix[3][3][10] = {0};
