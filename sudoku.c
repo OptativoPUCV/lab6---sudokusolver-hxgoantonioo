@@ -45,6 +45,35 @@ void print_node(Node* n){
 
 int is_valid(Node* n)
 {
+   int i, j, k;
+   int row[9][10] = {0};
+   int column[9][10] = {0};
+   int submatrix[3][3][10] = {0};
+
+   for (i = 0; i < 9; i++)
+      {
+         for (j = 0; j < 9; j++)
+            {
+               int num = n->sudo[i][j];
+               if(row[i][num] == 1)
+               {
+                  return 0;
+               }
+               row[i][num] = 1;
+               if (column[j][num] == 1)
+               {
+                  return 0;
+               }
+               column[j][num] = 1;
+               int subi = 3 * (i / 3);
+               int subj = 3 * (j / 3);
+               if (submatrix[subi][subj][num] == 1)
+               {
+                  return 0;
+               }
+               submatrix[subi][subj][num] = 1;
+            }
+      }
    return 1;
 }
 
