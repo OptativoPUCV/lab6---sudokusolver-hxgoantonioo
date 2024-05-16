@@ -147,3 +147,14 @@ sudoku.c:47:8: error: unused variable ‘fila’ [-Werror=unused-variable]
 cc1: all warnings being treated as errors
 Compilation failed
 098a928
+Thu 16 May 2024 03:58:35 PM UTC: 
+ sudoku.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+In file included from test.c:5:
+sudoku.c: In function ‘is_valid’:
+sudoku.c:64:35: error: ‘k’ undeclared (first use in this function)
+   64 |                   for (int j = 0; k < 9; k++)
+      |                                   ^
+sudoku.c:64:35: note: each undeclared identifier is reported only once for each function it appears in
+Compilation failed
+c5a2b6c
