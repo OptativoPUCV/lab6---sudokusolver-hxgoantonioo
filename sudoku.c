@@ -43,41 +43,9 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n) {
-    int i, j, k;
-    // Arrays to keep track of numbers in rows, columns, and submatrices
-    int row[9][10] = {0};
-    int col[9][10] = {0};
-    int submatrix[3][3][10] = {0};
-
-    // Check for repeated numbers in rows and columns
-    for(i = 0; i < 9; i++) {
-        for(j = 0; j < 9; j++) {
-            int num = n->sudo[i][j];
-            // Check row
-            if(row[i][num] == 1) {
-                return 0; // Number already exists in the row
-            } else {
-                row[i][num] = 1;
-            }
-            // Check column
-            if(col[j][num] == 1) {
-                return 0; // Number already exists in the column
-            } else {
-                col[j][num] = 1;
-            }
-            // Check submatrix
-            int sub_i = i / 3;
-            int sub_j = j / 3;
-            if(submatrix[sub_i][sub_j][num] == 1) {
-                return 0; // Number already exists in the submatrix
-            } else {
-                submatrix[sub_i][sub_j][num] = 1;
-            }
-        }
-    }
-
-    return 1; // Sudoku state is valid
+int is_valid(Node* n)
+{
+   return 1;
 }
 
 
