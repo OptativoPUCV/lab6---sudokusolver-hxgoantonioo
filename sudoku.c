@@ -45,6 +45,46 @@ void print_node(Node* n){
 
 int is_valid(Node* n)
 {
+   int i, j;
+   int fila[1][9] = {0};
+   int columna[9][1] = {0};
+   int cuadro[3][3] = {0};
+   for (i = 0; i < 9; i++)
+      {
+         for (j = 0; j < 9; j++)
+            {
+               if (n->sudo[i][j] != 0)
+               {
+                  if (fila[0][n->sudo[i][j] - 1] == 1)
+                  {
+                     return 0;
+                  }
+                  fila[0][n->sudo[i][j] - 1] = 1;
+               }
+            }
+         for (j = 0; j < 9; j++)
+            {
+               if (n->sudo[j][i] != 0)
+               {
+                  if (columna[n->sudo[j][i] - 1][0] == 1)
+                  {
+                     return 0;
+                  }
+                  columna[n->sudo[j][i] - 1][0] = 1;
+               }
+            }
+         for (j = 0; j < 9; j++)
+            {
+               if (n->sudo[i / 3 * 3 + j / 3][i % 3 * 3 + j % 3] != 0)
+               {
+                  if (cuadro[n->sudo[i / 3 * 3 + j / 3][i % 3 * 3 + j % 3] - 1][0] == 1)
+                  {
+                     return 0;
+                  }
+                  cuadro[n->sudo[i / 3 * 3 + j / 3][i % 3 * 3 + j % 3] - 1][0] = 1;
+               }
+            }
+      }
    return 1;
 }
 
