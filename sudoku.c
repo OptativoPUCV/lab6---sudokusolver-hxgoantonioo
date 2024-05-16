@@ -43,44 +43,38 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
-   for (int i = 0; i < 9; i++)
-      {
-         for (int j = 0; j < 9; j++)
-            {
-               if(n->sudo[i][j] != 0)
-               {
-                  for (int k = 0; k < 9; k++)
-                     {
-                        if (n->sudo[i][j] == n->sudo[i][k])
-                        {
-                           return 0;
+int is_valid(Node* n) {
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (n->sudo[i][j] != 0) {
+                // Verificar fila
+                for (int k = 0; k < 9; k++) {
+                    if (k != j && n->sudo[i][j] == n->sudo[i][k]) {
+                        return 0;
+                    }
+                }
+                // Verificar columna
+                for (int l = 0; l < 9; l++) {
+                    if (l != i && n->sudo[i][j] == n->sudo[l][j]) {
+                        return 0;
+                    }
+                }
+                // Verificar submatriz 3x3
+                int x = (i / 3) * 3;
+                int y = (j / 3) * 3;
+                for (int m = 0; m < 3; m++) {
+                    for (int s = 0; s < 3; s++) {
+                        if ((x + m != i || y + s != j) && n->sudo[x + m][y + s] == n->sudo[i][j]) {
+                            return 0;
                         }
-                     }
-                  for (int l = 0; l < 9; l++)
-                     {
-                        if (n->sudo[i][j] == n->sudo[l][j])
-                        {
-                           return 0;
-                        }
-                     }
-                  int x = (i/3)*3;
-                  int y = (j/3)*3;
-                  for (int m = 0; m < 3; m++)
-                     {
-                        for (int s = 0; s < 3; s++)
-                           {
-                              if (n->sudo[x+m][y+s] == n->sudo[i][j])
-                              {
-                                 return 0;
-                              }
-                           }
-                     }
-               }
+                    }
+                }
             }
-      }
-   return 1;
+        }
+    }
+    return 1;
 }
+
 
 
 List* get_adj_nodes(Node* n){
