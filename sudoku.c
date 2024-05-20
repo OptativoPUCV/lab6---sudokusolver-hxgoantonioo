@@ -117,7 +117,34 @@ int is_final(Node* n){
 }
 
 Node* DFS(Node* initial, int* cont){
-  return NULL;
+    *cont = 0;
+    Node** stack = (Node**) malloc(sizeof(Node*));
+    int top = 0;
+
+    while (top >= 0)
+        {
+            Node* current = stack[top];
+            top--;
+            (*cont)++;
+
+            if (is_final(current))
+            {
+                free(stack);
+                return current;
+            }
+
+            List* adj = get_adj_nodes(current);
+            Node* aux = first(adj);
+            while (aux != NULL)
+                {
+                    stack[top] = aux;
+                    top++;
+                    aux = next(adj);
+                }
+            clean(adj);
+        }
+    free(stack);
+    return NULL;
 }
 
 
