@@ -121,31 +121,34 @@ Node* DFS(Node* initial, int* cont){
     Node** stack = (Node**) malloc(sizeof(Node*));
     int top = 0;
 
-    while (top >= 0)
-        {
-            Node* current = stack[top];
-            top--;
-            (*cont)++;
+    stack[top] = initial;
+    top++;
 
-            if (is_final(current))
-            {
-                free(stack);
-                return current;
-            }
+    while (top > 0) {
+        Node* current = stack[top - 1];
+        top--;
+        (*cont)++;
 
-            List* adj = get_adj_nodes(current);
-            Node* aux = first(adj);
-            while (aux != NULL)
-                {
-                    stack[top] = aux;
-                    top++;
-                    aux = next(adj);
-                }
-            clean(adj);
+        if (is_final(current)) {
+            free(stack);
+            return current;
         }
+
+        List* adj = get_adj_nodes(current);
+        Node* aux = first(adj);
+        while (aux != NULL) {
+            stack = (Node**) realloc(stack, (top + 1) * sizeof(Node*));
+            stack[top] = aux;
+            top++;
+            aux = next(adj);
+        }
+        clean(adj);
+    }
+
     free(stack);
     return NULL;
 }
+
 
 
 
